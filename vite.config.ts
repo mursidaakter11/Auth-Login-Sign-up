@@ -6,6 +6,7 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
+    base: '/Auth-Login-Sign-up/',
     resolve: {
       dedupe: ['react', 'react-dom'],
       alias: {
