@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
 import type { AuthView, UserProfile } from '../types/auth';
 import { deriveHandle, evaluatePasswordStrength, getInitials } from '../utils/authValidation';
-
+import PORTAL_IMAGE from '../assets/images/kanso_arch_portal_1794767752029.jpg';
 interface PortalVisualPanelProps {
   view: AuthView;
   draftName: string;
@@ -12,7 +12,12 @@ interface PortalVisualPanelProps {
 }
 
 const PORTAL_IMAGE_PATH = `${import.meta.env.BASE_URL}assets/images/kanso_arch_portal_1794767752029.jpg`;
-
+<img
+  src={PORTAL_IMAGE}
+  alt="Minimalist concrete and limestone architectural gallery with cobalt glass"
+  onError={() => setImageError(true)}
+  className="absolute inset-0 h-full w-full object-cover object-center"
+/>
 export function PortalVisualPanel({
   view,
   draftName,
