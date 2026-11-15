@@ -11,7 +11,7 @@ interface PortalVisualPanelProps {
   authenticatedUser: UserProfile | null;
 }
 
-const PORTAL_IMAGE_PATH = '/src/assets/images/kanso_arch_portal_1794767752029.jpg';
+const PORTAL_IMAGE_PATH = `${import.meta.env.BASE_URL}assets/images/kanso_arch_portal_1794767752029.jpg`;
 
 export function PortalVisualPanel({
   view,
