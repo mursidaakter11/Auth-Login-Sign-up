@@ -7,7 +7,21 @@ import { LegalDialog } from './components/LegalDialog';
 import { PortalVisualPanel } from './components/PortalVisualPanel';
 import type { AuthResponse, AuthView, LegalTopic, UserProfile } from './types/auth';
 import { deriveAvatarPose, type FocusedAuthField } from './utils/avatarPose';
+import PORTAL_IMAGE from "./assets/images/kanso_arch_portal_1794767752029.jpg";
 
+function App() {
+  return (
+    <div>
+      <img
+        src={PORTAL_IMAGE}
+        alt="Kanso Architecture Portal"
+        className="w-full h-auto"
+      />
+    </div>
+  );
+}
+
+export default App;
 const TOKEN_STORAGE_KEY = 'kanso_auth_token';
 const THEME_STORAGE_KEY = 'kanso_theme';
 
