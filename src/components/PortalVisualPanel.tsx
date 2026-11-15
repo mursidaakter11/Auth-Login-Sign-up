@@ -1,8 +1,15 @@
+
 import { useState } from 'react';
 import { ShieldCheck } from 'lucide-react';
 import type { AuthView, UserProfile } from '../types/auth';
-import { deriveHandle, evaluatePasswordStrength, getInitials } from '../utils/authValidation';
+import {
+  deriveHandle,
+  evaluatePasswordStrength,
+  getInitials,
+} from '../utils/authValidation';
+
 import PORTAL_IMAGE from '../assets/images/kanso_arch_portal_1794767752029.jpg';
+
 interface PortalVisualPanelProps {
   view: AuthView;
   draftName: string;
@@ -11,13 +18,6 @@ interface PortalVisualPanelProps {
   authenticatedUser: UserProfile | null;
 }
 
-const PORTAL_IMAGE_PATH = `${import.meta.env.BASE_URL}assets/images/kanso_arch_portal_1794767752029.jpg`;
-<img
-  src={PORTAL_IMAGE}
-  alt="Minimalist concrete and limestone architectural gallery with cobalt glass"
-  onError={() => setImageError(true)}
-  className="absolute inset-0 h-full w-full object-cover object-center"
-/>
 export function PortalVisualPanel({
   view,
   draftName,
@@ -30,14 +30,20 @@ export function PortalVisualPanel({
   const displayName = authenticatedUser
     ? authenticatedUser.fullName
     : draftName.trim() || 'New Member';
+
   const displayEmail = authenticatedUser
     ? authenticatedUser.email
     : draftEmail.trim() || 'name@company.com';
-  const initials = getInitials(authenticatedUser ? authenticatedUser.fullName : draftName);
+
+  const initials = getInitials(
+    authenticatedUser ? authenticatedUser.fullName : draftName
+  );
+
   const handle = deriveHandle(
     authenticatedUser ? authenticatedUser.fullName : draftName,
     authenticatedUser ? authenticatedUser.email : draftEmail
   );
+
   const strength = evaluatePasswordStrength(draftPassword);
 
   const showLivePass = authenticatedUser !== null || view === 'signup';
@@ -53,24 +59,25 @@ export function PortalVisualPanel({
         className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950"
       />
 
+      {/* Portal Background Image */}
       {!imageError && (
         <img
-          src={PORTAL_IMAGE_PATH}
+          src={PORTAL_IMAGE}
           alt="Minimalist concrete and limestone architectural gallery with cobalt glass"
-          referrerPolicy="no-referrer"
           onError={() => setImageError(true)}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
       )}
 
-      {/* Measured contrast scrim for 4.5:1+ white text legibility */}
+      {/* Contrast Overlay */}
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-t from-slate-950/88 via-slate-950/35 to-slate-950/30"
       />
 
       <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 lg:p-12 text-white">
-        {/* Brand Wordmark (single clean text element) */}
+
+        {/* Brand Wordmark */}
         <div className="flex items-center justify-between">
           <a
             href="/"
@@ -80,7 +87,7 @@ export function PortalVisualPanel({
           </a>
         </div>
 
-        {/* Desktop editorial anchor / live identity preview */}
+        {/* Desktop Editorial Anchor / Live Identity Preview */}
         <div className="hidden lg:block max-w-md space-y-6">
           {showLivePass ? (
             <div
@@ -92,25 +99,34 @@ export function PortalVisualPanel({
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-sm font-semibold tracking-wide text-white">
                     {initials}
                   </div>
+
                   <div className="min-w-0">
                     <p className="truncate text-base font-medium text-white">
                       {displayName}
                     </p>
+
                     <p className="truncate font-[var(--font-mono)] text-xs text-slate-300">
                       {handle}
                     </p>
                   </div>
                 </div>
+
                 <span className="text-xs font-medium text-blue-300 whitespace-nowrap shrink-0">
-                  {authenticatedUser ? authenticatedUser.role : 'Member Pass'}
+                  {authenticatedUser
+                    ? authenticatedUser.role
+                    : 'Member Pass'}
                 </span>
               </div>
 
               <div className="mt-4 flex items-center justify-between gap-4 text-xs text-slate-300">
                 <span className="truncate">{displayEmail}</span>
+
                 {authenticatedUser ? (
                   <span className="inline-flex items-center gap-1.5 text-emerald-300 whitespace-nowrap shrink-0">
-                    <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                    <ShieldCheck
+                      className="h-3.5 w-3.5"
+                      aria-hidden="true"
+                    />
                     Active session
                   </span>
                 ) : (
@@ -118,6 +134,7 @@ export function PortalVisualPanel({
                     <span className="font-[var(--font-mono)] tabular-nums text-slate-300">
                       {draftPassword ? strength.label : 'Pending'}
                     </span>
+
                     <div className="flex items-center gap-1" aria-hidden="true">
                       {[0, 1, 2, 3].map((idx) => (
                         <span
@@ -141,6 +158,7 @@ export function PortalVisualPanel({
               <h2 className="font-[var(--font-display)] text-3xl xl:text-4xl font-medium leading-[1.15] tracking-tight text-white [text-wrap:balance]">
                 Quiet workspace access, stripped of friction.
               </h2>
+
               <p className="text-sm leading-relaxed text-slate-200/90 max-w-sm">
                 Sign in with your password, request an instant one-time code, or continue with your studio identity.
               </p>
