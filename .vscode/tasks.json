@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Dev Server",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "server\\.ts",
+          "endsPattern": "Server listening on"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run Unit Tests",
+      "type": "npm",
+      "script": "test",
+      "group": "test"
+    },
+    {
+      "label": "Typecheck (tsc)",
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build Production",
+      "type": "npm",
+      "script": "build",
+      "group": "build"
+    }
+  ]
+}

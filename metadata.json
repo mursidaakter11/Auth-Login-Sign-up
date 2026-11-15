@@ -1,0 +1,6 @@
+{
+  "name": "Kanso — Minimal Member Access",
+  "description": "A minimal, architectural login and sign-up portal for modern web applications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
